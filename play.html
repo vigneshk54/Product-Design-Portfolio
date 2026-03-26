@@ -132,12 +132,20 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 48px 32px;
   }
+  .motion-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 32px;
+  }
   .illus-img-wrap {
     overflow: hidden;
     border-radius: 12px;
     aspect-ratio: 1/1;
     background: #e4e4e2;
     margin-bottom: 10px;
+  }
+  .motion-grid .illus-img-wrap {
+    aspect-ratio: 16/9;
   }
   .illus-img-wrap img,
   .illus-img-wrap video {
@@ -200,7 +208,9 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 680px) {
-    .illustration-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+    .page-header p { white-space: normal; }
+    .illustration-grid { grid-template-columns: 1fr; gap: 32px; }
+    .motion-grid { grid-template-columns: 1fr; gap: 32px; }
     .page-header { padding-bottom: 48px; }
     :root { --page-pad: 20px; }
   }
@@ -233,17 +243,21 @@
       <div class="sub-section-header">
         <span class="section-label">Motion</span>
       </div>
-      <div class="illustration-grid">
+      <div class="motion-grid">
         <div class="illus-item reveal reveal-delay-1">
-          <div class="illus-img-wrap"><img src="Assets/01_-_YouTubeintro-TechLila_d8259047_square_white.gif" alt="YouTube Intro" loading="lazy" /></div>
+          <div class="illus-img-wrap"><img src="Assets/01_-_YouTubeintro-TechLila_d8259047.gif" alt="YouTube Intro" loading="lazy" /></div>
           <span class="illus-label">YouTube Intro</span>
         </div>
         <div class="illus-item reveal reveal-delay-2">
-          <div class="illus-img-wrap"><video src="Assets/03 - Morph.c6e3ba55.mp4" autoplay loop muted playsinline></video></div>
-          <span class="illus-label">Morph</span>
+          <div class="illus-img-wrap"><img src="Assets/Focus.gif" alt="Focus" loading="lazy" /></div>
+          <span class="illus-label">Focus</span>
         </div>
         <div class="illus-item reveal reveal-delay-3">
-          <div class="illus-img-wrap"><img src="Assets/04_-_Macintosh_afacbe9d_square_white.gif" alt="Macintosh" loading="lazy" /></div>
+          <div class="illus-img-wrap"><img src="Assets/03_-_Morph_c6e3ba55.gif" alt="Morph" loading="lazy" /></div>
+          <span class="illus-label">Morph</span>
+        </div>
+        <div class="illus-item reveal reveal-delay-1">
+          <div class="illus-img-wrap"><img src="Assets/04_-_Macintosh_afacbe9d.gif" alt="Macintosh" loading="lazy" /></div>
           <span class="illus-label">Macintosh</span>
         </div>
       </div>
