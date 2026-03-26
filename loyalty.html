@@ -180,6 +180,32 @@ nav.scrolled{background:rgba(0,0,0,.88);backdrop-filter:blur(12px)}
 
 footer{background:var(--black);border-top:1px solid rgba(255,255,255,.08);padding:0 var(--pad)}
 .footer-inner{max-width:var(--max-w);margin:0 auto;padding:60px 0 48px;display:flex;flex-direction:column;align-items:flex-start;width:100%}
+
+/* ── MOBILE ── */
+@media (max-width: 680px) {
+  :root { --pad: 20px; }
+  #hero { padding-top: 120px; padding-bottom: 60px; }
+  .hero-title { white-space: normal; }
+  #stats { padding-top: 48px; padding-bottom: 60px; }
+  #opportunity, #status-quo, #approach, #phases, #impact, #gate { padding-top: 64px; padding-bottom: 64px; }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .stat-item,
+  .stat-item:nth-child(2),
+  .stat-item:nth-child(3),
+  .stat-item:last-child { padding: 0 !important; border-right: none !important; }
+  .sq-layout { grid-template-columns: 1fr; gap: 40px; }
+  .sq-screen { max-width: 220px; }
+  .funnel-wrap { height: 320px; }
+  .approach-screens { grid-template-columns: 1fr; }
+  .phases-grid { grid-template-columns: 1fr; }
+  .impact-numbers { grid-template-columns: 1fr; }
+  .impact-metric:nth-child(1) { border-right: none; padding-right: 0; }
+  .impact-metric:nth-child(2) { padding-left: 0; }
+  .gate-inner { grid-template-columns: 1fr; gap: 40px; }
+  .gate-input-wrap { flex-direction: column; }
+  .gate-btn { width: 100%; }
+  .footer-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
 .footer-row{display:flex;justify-content:space-between;align-items:center;width:100%}
 .footer-vibe{font-size:11px;color:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:flex-start;gap:5px;margin-top:24px}
 .footer-vibe a{color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:color .2s}
