@@ -230,6 +230,52 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.08);paddin
 #ateb-animation{width:100%;height:360px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.03)}
 .phase-card.shipping .phase-title{color:rgba(0,0,0,.85)}
 .phase-badge.amber{background:#fef9c3;color:#854d0e}
+
+/* ── ATEB ANIMATION ── */
+#ateb-animation{width:100%;height:auto;border:none;background:transparent;padding:48px 0 0;border-radius:0}
+.ateb-wrap{background:#0d0d0d;border-radius:16px;padding:40px 40px 52px;position:relative;overflow:hidden}
+.ateb-phases{display:flex;gap:0;margin-bottom:0}
+.ateb-phase{flex:1;padding:0 16px 28px;opacity:0;transform:translateY(-10px);transition:opacity .5s ease,transform .5s ease;position:relative;border-bottom:2px solid rgba(255,255,255,.06)}
+.ateb-phase.active{opacity:1;transform:translateY(0)}
+.ateb-phase::after{content:'';position:absolute;bottom:-2px;left:16px;right:16px;height:2px;border-radius:1px;opacity:0;transition:opacity .4s ease .2s}
+.ateb-phase.active::after{opacity:1}
+.ateb-p1::after{background:#a5b4fc}
+.ateb-p2::after{background:#4ade80}
+.ateb-p3::after{background:#fb923c}
+.ateb-pname{display:block;font-size:clamp(20px,2.2vw,26px);font-weight:600;margin-bottom:8px;letter-spacing:-.3px}
+.ateb-p1 .ateb-pname{color:#a5b4fc}
+.ateb-p2 .ateb-pname{color:#4ade80}
+.ateb-p3 .ateb-pname{color:#fb923c}
+.ateb-pdesc{display:block;font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.55;opacity:0;transition:opacity .5s ease .25s}
+.ateb-phase.active .ateb-pdesc{opacity:1}
+.ateb-stages{display:flex;align-items:center;padding-top:24px;gap:0}
+.ateb-sgroup{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:0 6px}
+.ateb-stage{flex:1;padding:9px 8px;border-radius:8px;border:1px solid rgba(255,255,255,.1);font-family:var(--mono);font-size:11px;font-weight:400;color:rgba(255,255,255,.35);text-align:center;line-height:1.35;transition:background .5s ease,border-color .5s ease,color .5s ease,box-shadow .5s ease}
+.ateb-arr{font-size:11px;color:rgba(255,255,255,.15);flex-shrink:0;padding:0 2px;transition:color .5s ease}
+.ateb-xarr{font-size:13px;color:rgba(255,255,255,.12);flex-shrink:0;padding:0 2px}
+/* Highlighted group states */
+.ateb-sgroup.hi-1 .ateb-stage{background:rgba(165,180,252,.12);border-color:rgba(165,180,252,.4);color:rgba(255,255,255,.88);box-shadow:0 0 18px rgba(165,180,252,.08)}
+.ateb-sgroup.hi-1 .ateb-arr{color:rgba(165,180,252,.5)}
+.ateb-sgroup.hi-2 .ateb-stage{background:rgba(74,222,128,.1);border-color:rgba(74,222,128,.38);color:rgba(255,255,255,.88);box-shadow:0 0 18px rgba(74,222,128,.07)}
+.ateb-sgroup.hi-2 .ateb-arr{color:rgba(74,222,128,.5)}
+.ateb-sgroup.hi-3 .ateb-stage{background:rgba(251,146,60,.1);border-color:rgba(251,146,60,.38);color:rgba(255,255,255,.88);box-shadow:0 0 18px rgba(251,146,60,.07)}
+.ateb-sgroup.hi-3 .ateb-arr{color:rgba(251,146,60,.5)}
+/* Replay button */
+.ateb-replay{position:absolute;bottom:20px;right:24px;background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.35);font-family:var(--mono);font-size:11px;letter-spacing:.5px;padding:6px 16px;border-radius:100px;cursor:pointer;opacity:0;transform:translateY(4px);transition:opacity .4s ease,transform .4s ease,color .2s,border-color .2s}
+.ateb-replay.show{opacity:1;transform:translateY(0)}
+.ateb-replay:hover{color:rgba(255,255,255,.75);border-color:rgba(255,255,255,.35)}
+/* Mobile */
+@media(max-width:680px){
+  .ateb-wrap{padding:28px 20px 48px}
+  .ateb-phases{flex-direction:column;gap:0}
+  .ateb-phase{padding:20px 0 20px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .ateb-phase::after{left:0;right:0;bottom:-1px}
+  .ateb-stages{flex-direction:column;gap:10px;padding-top:20px}
+  .ateb-sgroup{width:100%;justify-content:stretch;padding:0}
+  .ateb-xarr{display:none}
+  .ateb-stage{font-size:12px;padding:10px}
+  .ateb-arr{padding:0 4px}
+}
 </style>
 </head>
 <body>
@@ -358,8 +404,51 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.08);paddin
       </div>
     </div>
 
-    <!-- A→E→B animation will be added here -->
-    <div id="ateb-animation"></div>
+    <!-- A→E→B animation -->
+    <div id="ateb-animation">
+      <div class="ateb-wrap">
+
+        <!-- Phase annotation panels -->
+        <div class="ateb-phases">
+          <div class="ateb-phase ateb-p1" id="ateb-ph1">
+            <span class="ateb-pname">Awareness</span>
+            <span class="ateb-pdesc">Surface the program. Make the value obvious before the member starts shopping.</span>
+          </div>
+          <div class="ateb-phase ateb-p2" id="ateb-ph2">
+            <span class="ateb-pname">Earn</span>
+            <span class="ateb-pdesc">Show rewards pricing at item level. Make savings visible as the cart builds.</span>
+          </div>
+          <div class="ateb-phase ateb-p3" id="ateb-ph3">
+            <span class="ateb-pname">Burn</span>
+            <span class="ateb-pdesc">Let members redeem points at checkout. Reinforce the value after the order.</span>
+          </div>
+        </div>
+
+        <!-- Journey stages row -->
+        <div class="ateb-stages">
+          <div class="ateb-sgroup" id="ateb-sg1">
+            <div class="ateb-stage">Enter<br>Shipt</div>
+            <div class="ateb-arr">→</div>
+            <div class="ateb-stage">Enter<br>Retailer</div>
+          </div>
+          <div class="ateb-xarr">→</div>
+          <div class="ateb-sgroup" id="ateb-sg2">
+            <div class="ateb-stage">Build<br>Cart</div>
+            <div class="ateb-arr">→</div>
+            <div class="ateb-stage">Review<br>Cart</div>
+          </div>
+          <div class="ateb-xarr">→</div>
+          <div class="ateb-sgroup" id="ateb-sg3">
+            <div class="ateb-stage">Checkout</div>
+            <div class="ateb-arr">→</div>
+            <div class="ateb-stage">After<br>Ordering</div>
+          </div>
+        </div>
+
+        <button class="ateb-replay" id="ateb-replay">↺ Replay</button>
+
+      </div>
+    </div>
 
   </div>
 </section>
@@ -543,6 +632,66 @@ function checkPassword() {
   }
 }
 document.getElementById('pwd-input').addEventListener('keydown', e => { if(e.key==='Enter') checkPassword(); });
+</script>
+
+<script>
+(function(){
+  var STEPS = [
+    { ph: 'ateb-ph1', sg: 'ateb-sg1', hi: 'hi-1', t: 0    },
+    { ph: 'ateb-ph2', sg: 'ateb-sg2', hi: 'hi-2', t: 1500 },
+    { ph: 'ateb-ph3', sg: 'ateb-sg3', hi: 'hi-3', t: 3000 },
+  ];
+  var timers = [];
+
+  function reset() {
+    timers.forEach(clearTimeout);
+    timers = [];
+    STEPS.forEach(function(s){
+      var ph = document.getElementById(s.ph);
+      var sg = document.getElementById(s.sg);
+      if(ph){ ph.classList.remove('active'); }
+      if(sg){ sg.classList.remove(s.hi); }
+    });
+    var rb = document.getElementById('ateb-replay');
+    if(rb){ rb.classList.remove('show'); }
+  }
+
+  function play() {
+    reset();
+    STEPS.forEach(function(s){
+      timers.push(setTimeout(function(){
+        var ph = document.getElementById(s.ph);
+        var sg = document.getElementById(s.sg);
+        if(ph){ ph.classList.add('active'); }
+        if(sg){ sg.classList.add(s.hi); }
+      }, s.t));
+    });
+    // Show replay button after all phases are in
+    timers.push(setTimeout(function(){
+      var rb = document.getElementById('ateb-replay');
+      if(rb){ rb.classList.add('show'); }
+    }, 4600));
+  }
+
+  // Trigger on scroll into view
+  var atebEl = document.getElementById('ateb-animation');
+  var atebPlayed = false;
+  if(atebEl && window.IntersectionObserver){
+    var atebObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting && !atebPlayed){
+          atebPlayed = true;
+          setTimeout(play, 400);
+        }
+      });
+    }, { threshold: 0.35 });
+    atebObs.observe(atebEl);
+  }
+
+  // Replay button
+  var rb = document.getElementById('ateb-replay');
+  if(rb){ rb.addEventListener('click', play); }
+})();
 </script>
 </body>
 </html>
