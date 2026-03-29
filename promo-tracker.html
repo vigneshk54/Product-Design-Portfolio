@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bringing clarity to how savings work at Shipt — Vignesh Kannan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#000;--white:#fff;--off-white:#f5f5f3;
+  --gray:#888;--light-gray:#e8e8e6;
+  --accent:#1a1a1a;
+  --font:'Inter',sans-serif;
+  --mono:'Geist Mono',monospace;
+  --max-w:976px;--pad:40px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--black);color:var(--white);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 var(--pad);transition:background .4s,backdrop-filter .4s}
+nav.scrolled{background:rgba(0,0,0,.88);backdrop-filter:blur(12px)}
+.nav-inner{max-width:var(--max-w);margin:0 auto;height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:16px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--white);text-decoration:none}
+.nav-back{font-size:14px;color:rgba(255,255,255,.6);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s;position:relative}
+.nav-back::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--white);transform:scaleX(0);transform-origin:right;transition:transform .3s ease}
+.nav-back:hover{color:var(--white)}
+.nav-back:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* CONTAINER */
+.container{max-width:var(--max-w);margin:0 auto;width:100%}
+
+/* SECTION LABEL */
+.label{font-family:var(--mono);font-size:12px;letter-spacing:1.2px;text-transform:uppercase;opacity:.5;display:block;margin-bottom:12px}
+
+/* ── HERO ── */
+#hero{background:var(--black);padding:160px var(--pad) 100px;position:relative;overflow:hidden}
+.hero-meta{display:flex;align-items:center;gap:16px;margin-bottom:32px}
+.hero-chip{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border:1px solid rgba(255,255,255,.2);border-radius:100px;color:rgba(255,255,255,.6)}
+.hero-title{font-size:clamp(36px,5vw,60px);font-weight:400;line-height:1.1;margin-bottom:24px}
+.hero-title em{font-style:italic;font-weight:300}
+.hero-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,.55);max-width:640px;line-height:1.65;margin-bottom:60px}
+.hero-img-placeholder{width:100%;aspect-ratio:16/9;border-radius:16px;background:#1a1a1a}
+
+/* ── SECTIONS ── */
+.section-dark{background:var(--black);padding:100px var(--pad);color:var(--white)}
+.section-light{background:var(--off-white);padding:100px var(--pad);color:var(--black)}
+
+/* ── SECTION BODY TEXT ── */
+.section-body{font-size:16px;line-height:1.75;color:rgba(255,255,255,.55);max-width:640px;margin-bottom:40px}
+.section-body-light{font-size:16px;line-height:1.75;color:rgba(0,0,0,.6);max-width:640px;margin-bottom:40px}
+
+/* ── CALLOUT (bold pull-quote style) ── */
+.callout-text{font-size:clamp(22px,2.8vw,36px);font-weight:600;line-height:1.25;letter-spacing:-.02em;color:var(--white);margin-bottom:32px;max-width:760px}
+.callout-text-light{font-size:clamp(22px,2.8vw,36px);font-weight:600;line-height:1.25;letter-spacing:-.02em;color:var(--black);margin-bottom:32px;max-width:760px}
+
+/* ── PROBLEM LAYOUT ── */
+.problem-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.problem-heading{font-size:clamp(28px,3.5vw,44px);font-weight:400;line-height:1.15;margin-bottom:32px}
+.problem-heading strong{font-weight:700}
+.callout-card{background:var(--black);color:var(--white);border-radius:12px;padding:32px;margin-top:32px}
+.callout-card .mono{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;opacity:.5;margin-bottom:8px}
+.callout-card p{font-size:15px;line-height:1.6;color:rgba(255,255,255,.7)}
+
+/* ── SIDE-BY-SIDE IMAGES ── */
+.img-pair{display:flex;gap:24px;margin-top:40px}
+.img-pair-item{flex:1;display:flex;flex-direction:column;gap:10px}
+.img-placeholder{background:#1a1a1a;border-radius:8px}
+.img-caption{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.35);letter-spacing:.5px;line-height:1.5}
+.img-caption-light{font-family:var(--mono);font-size:11px;color:rgba(0,0,0,.35);letter-spacing:.5px;line-height:1.5}
+
+/* ── NUMBERED CALLOUT BLOCKS ── */
+.numbered-callouts{display:flex;flex-direction:column;gap:40px;margin-top:48px}
+.numbered-callout{display:grid;grid-template-columns:48px 1fr;gap:24px;align-items:start}
+.nc-num{font-size:clamp(32px,3.5vw,48px);font-weight:700;line-height:1;color:rgba(255,255,255,.15)}
+.nc-text{font-size:clamp(18px,2.2vw,26px);font-weight:600;line-height:1.3;letter-spacing:-.015em;color:var(--white);padding-top:4px}
+
+/* ── BRIDGING BODY TEXT ── */
+.bridge-text{font-size:16px;line-height:1.75;color:rgba(255,255,255,.55);max-width:640px;margin-top:48px}
+.bridge-text-light{font-size:16px;line-height:1.75;color:rgba(0,0,0,.55);max-width:640px;margin-top:48px}
+
+/* ── THREE-COL GOALS ── */
+.goals-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-top:40px}
+.goal-col{}
+.goal-num{font-size:28px;font-weight:700;color:rgba(255,255,255,.18);line-height:1;margin-bottom:12px}
+.goal-heading{font-size:15px;font-weight:600;color:var(--white);margin-bottom:8px}
+.goal-body{font-size:14px;color:rgba(255,255,255,.5);line-height:1.7}
+
+/* ── FULL-WIDTH IMAGE BLOCK ── */
+.full-img-block{margin-top:48px}
+.full-img-block .img-placeholder{width:100%;border-radius:12px}
+
+/* ── STATUS BLOCK ── */
+.status-block{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:48px var(--pad)}
+.status-inner{max-width:var(--max-w);margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.status-row{display:flex;align-items:center;gap:16px}
+.status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot-live{background:#22c55e}
+.dot-design{background:#f59e0b}
+.status-label{font-size:15px;font-weight:500;color:rgba(255,255,255,.8)}
+.status-tag{font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:3px 10px;border-radius:100px}
+.tag-live{background:rgba(34,197,94,.12);color:rgba(34,197,94,.75)}
+.tag-indesign{background:rgba(245,158,11,.12);color:rgba(245,158,11,.75)}
+
+/* ── GATE / CTA ── */
+#cta{background:var(--black);padding:100px var(--pad);border-top:1px solid rgba(255,255,255,.08)}
+.cta-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.cta-left h2{font-size:clamp(28px,3.5vw,44px);font-weight:400;line-height:1.15;margin-bottom:16px}
+.cta-left p{font-size:15px;color:rgba(255,255,255,.5);line-height:1.65;max-width:420px}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--white);color:var(--black);border:none;border-radius:8px;padding:14px 28px;font-family:var(--font);font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;transition:opacity .2s;white-space:nowrap}
+.cta-btn:hover{opacity:.85}
+
+/* FOOTER */
+footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid rgba(255,255,255,.08)}
+.footer-vibe{font-size:11px;color:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:flex-start;gap:5px;margin-top:24px;max-width:var(--max-w);margin-left:auto;margin-right:auto}
+.footer-vibe a{color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:color .2s}
+.footer-vibe a:hover{color:rgba(255,255,255,.55)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.3)}
+.footer-back{font-size:14px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s;position:relative;display:inline-block}
+.footer-back::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--white);transform:scaleX(0);transform-origin:right;transition:transform .3s ease}
+.footer-back:hover{color:var(--white)}
+.footer-back:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* ── MOBILE ── */
+@media(max-width:680px){
+  :root{--pad:20px}
+  #hero{padding-top:120px;padding-bottom:64px}
+  .section-dark,.section-light{padding-top:64px;padding-bottom:64px}
+  #cta{padding-top:64px;padding-bottom:64px}
+  .hero-meta{flex-wrap:wrap}
+  .img-pair{flex-direction:column}
+  .goals-cols{grid-template-columns:1fr;gap:32px}
+  .cta-inner{grid-template-columns:1fr;gap:40px}
+  .numbered-callout{grid-template-columns:36px 1fr;gap:16px}
+  .status-block{padding-top:40px;padding-bottom:40px}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Vignesh Kannan</a>
+    <a href="index.html#featured" class="nav-back">← Back to work</a>
+  </div>
+</nav>
+
+<!-- ── SECTION 1: HERO ── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-meta reveal">
+      <span class="hero-chip">Lead Designer</span>
+      <span class="hero-chip">Expanded Scope</span>
+      <span class="hero-chip">Systems Design</span>
+    </div>
+    <h1 class="hero-title reveal d1">Bringing clarity to how savings work at Shipt.</h1>
+    <p class="hero-sub reveal d2">Promos and coupons powered savings across Shipt&#8217;s marketplace &#8212; but they looked identical, behaved differently, and gave members no way to track what they could save. I audited the system, unified the framework, and designed a savings tracker that surfaces opportunities as members shop.</p>
+    <!-- Replace with promo tracker hero image -->
+    <div class="hero-img-placeholder reveal d3"></div>
+  </div>
+</section>
+
+<!-- ── SECTION 2: THE AUDIT ── -->
+<section class="section-dark" style="border-top:1px solid rgba(255,255,255,.08);">
+  <div class="container">
+    <span class="label reveal">The Audit</span>
+    <p class="callout-text reveal">I was asked to make eligible items easier to find. I found a bigger problem.</p>
+    <p class="section-body reveal">The original ask was narrow &#8212; reduce the clicks to view eligible items for promos and coupons. But when I mapped the full experience, I found systemic inconsistency. Promos and coupons looked identical on product cards but behaved completely differently. Clicking a promo took you to the PDP. Clicking a coupon showed eligible items. Progress tracking worked differently for each. The visual language was the same, but the interaction model diverged at every touchpoint.</p>
+
+    <div class="img-pair reveal">
+      <div class="img-pair-item">
+        <!-- Replace with product card comparison: promos vs coupons looking identical but behaving differently (from slide 6) -->
+        <div class="img-placeholder" style="aspect-ratio:4/3;"></div>
+        <p class="img-caption">In product cards &#8212; promos weren&#8217;t clickable, coupons were. But they looked exactly the same.</p>
+      </div>
+      <div class="img-pair-item">
+        <!-- Replace with PDP comparison: how promos vs coupons show up differently on PDP (from slide 9) -->
+        <div class="img-placeholder" style="aspect-ratio:4/3;"></div>
+        <p class="img-caption">On PDPs &#8212; promos, pre-clipped coupons, and post-clipped coupons all looked and behaved differently.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 3: TWO PROBLEMS, ONE ROOT CAUSE ── -->
+<section class="section-light">
+  <div class="container">
+    <span class="label reveal" style="color:rgba(0,0,0,.4)">What I Found</span>
+
+    <div class="numbered-callouts reveal">
+      <div class="numbered-callout">
+        <span class="nc-num" style="color:rgba(0,0,0,.12)">#1</span>
+        <p class="nc-text" style="color:var(--black)">Promos &amp; coupons looked identical, but behaved very differently.</p>
+      </div>
+      <div class="numbered-callout">
+        <span class="nc-num" style="color:rgba(0,0,0,.12)">#2</span>
+        <p class="nc-text" style="color:var(--black)">Members had no way to actively track or pursue savings. The experience was entirely passive.</p>
+      </div>
+    </div>
+
+    <p class="bridge-text-light reveal">Both problems traced back to the same root: the system had no unified framework for how savings mechanisms should look, behave, and communicate across surfaces.</p>
+  </div>
+</section>
+
+<!-- ── SECTION 4: REFRAMING THE SCOPE ── -->
+<section class="section-dark" style="border-top:1px solid rgba(255,255,255,.08);">
+  <div class="container">
+    <span class="label reveal">Expanding the Brief</span>
+    <p class="section-body reveal">I reframed the project from a single-feature fix to a three-part systems redesign:</p>
+
+    <div class="goals-cols reveal">
+      <div class="goal-col">
+        <p class="goal-num">1.</p>
+        <p class="goal-heading">Simplify access</p>
+        <p class="goal-body">Reduce a 5-step flow to 2. Members should go from product card to eligible items in two taps.</p>
+      </div>
+      <div class="goal-col">
+        <p class="goal-num">2.</p>
+        <p class="goal-heading">Unify the experience</p>
+        <p class="goal-body">One interaction model for promos and coupons across all surfaces. Members shouldn&#8217;t have to learn two behaviors.</p>
+      </div>
+      <div class="goal-col">
+        <p class="goal-num">3.</p>
+        <p class="goal-heading">Surface savings proactively</p>
+        <p class="goal-body">Build a tracker that shows members what they can save as they shop &#8212; not after.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 5: UNIFIED FRAMEWORK ── -->
+<section class="section-light">
+  <div class="container">
+    <span class="label reveal" style="color:rgba(0,0,0,.4)">One System, Not Two</span>
+    <p class="section-body-light reveal">I aligned how promos and coupons behave at every level. Promos now show a chevron for visual affordance of clickability. Both types lead to a consistent details page with eligible items shown immediately. PDP states &#8212; default, in progress, complete &#8212; follow the same pattern regardless of savings type.</p>
+    <div class="full-img-block reveal">
+      <!-- Replace with unified promo/coupon framework screens from Aligning_promos___coupons.png — show the aligned PDP states for coupons (pre-clipping, clipped, in progress, complete) and promos (default, in progress, complete) -->
+      <div class="img-placeholder" style="width:100%;aspect-ratio:16/9;border-radius:12px;background:#e8e8e6;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 6: SIMPLIFIED ACCESS ── -->
+<section class="section-dark" style="border-top:1px solid rgba(255,255,255,.08);">
+  <div class="container">
+    <span class="label reveal">From Five Steps to Two</span>
+    <p class="section-body reveal">The original coupon flow required tapping the coupon, clipping it, waiting for transitions, tapping mix and match, then viewing eligible items. The redesigned flow: tap the promo or coupon from the product card, see eligible items immediately.</p>
+    <div class="full-img-block reveal">
+      <!-- Replace with streamlined eligible items flow screens from Accessing_eligible_items.png -->
+      <div class="img-placeholder" style="width:100%;aspect-ratio:16/9;border-radius:12px;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 7: SAVINGS TRACKER ── -->
+<section class="section-light">
+  <div class="container">
+    <span class="label reveal" style="color:rgba(0,0,0,.4)">Savings Tracker</span>
+    <p class="callout-text-light reveal">Savings shouldn&#8217;t be something members stumble into.</p>
+    <p class="section-body-light reveal">I designed a consistent potential savings tracker that appears across the shopping journey &#8212; on the retailer home page, in search results, and in cart. It surfaces applicable promos and coupons based on items already added, shows progress toward thresholds, and prompts actionable next steps. The tracker transforms savings from a passive discovery into an active, guided experience.</p>
+    <div class="full-img-block reveal">
+      <!-- Replace with savings tracker screens from Promo_Tracker.png — show the tracker on browse, in search, and the cart view with savings breakdown and actionable prompts ("Add 2 more, get $2.00 off") -->
+      <div class="img-placeholder" style="width:100%;aspect-ratio:16/9;border-radius:12px;background:#e8e8e6;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 8: STATUS ── -->
+<div class="status-block">
+  <div class="status-inner">
+    <div class="status-row">
+      <span class="status-dot dot-live"></span>
+      <span class="status-label">Eligible items redesign</span>
+      <span class="status-tag tag-live">Live in experiment</span>
+    </div>
+    <div class="status-row">
+      <span class="status-dot dot-design"></span>
+      <span class="status-label">Savings tracker</span>
+      <span class="status-tag tag-indesign">In design</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 9: DEEP DIVE CTA ── -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-left reveal">
+        <span class="label">The Full Picture</span>
+        <h2>There&#8217;s more to the story.</h2>
+        <p>The full case study covers the system audit, the complete alignment framework across all promo types, and the design rationale behind the savings tracker.</p>
+      </div>
+      <div class="reveal d1">
+        <a href="#" class="cta-btn">View the deck →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">Vignesh Kannan · Product Designer</span>
+    <a href="index.html#featured" class="footer-back">← Back to all work</a>
+  </div>
+  <div class="footer-vibe">
+    Vibe coded on
+    <a href="https://claude.ai/code" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="#D97757" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L22 22H16L12 13L8 22H2L12 2Z"/></svg>
+      Claude Code
+    </a>
+  </div>
+</footer>
+
+<script>
+// NAV scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
+
+// REVEAL
+const els = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, {threshold:.08});
+els.forEach(el => obs.observe(el));
+function checkVis(){ els.forEach(el => { if(el.getBoundingClientRect().top < innerHeight - 40) el.classList.add('visible'); }); }
+checkVis(); window.addEventListener('scroll', checkVis, {passive:true});
+</script>
+
+</body>
+</html>
