@@ -210,39 +210,49 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
 }
 
 /* ── THREE LAYERS ANIMATION ── */
-#three-layers-animation{width:100%;height:auto;border:none;background:transparent;margin-bottom:56px}
-.tla-wrap{position:relative;padding:40px 0 48px}
-.tla-baseline{position:absolute;bottom:48px;left:0;right:0;height:1px;background:rgba(255,255,255,.1)}
-.tla-stack{display:flex;flex-direction:column-reverse;gap:6px;position:relative}
 /* Each layer row: block + description side by side */
-.tla-layer{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
-.tla-layer.tla-in{opacity:1;transform:translateY(0)}
-.tla-block{border-radius:10px;padding:20px 28px;display:flex;flex-direction:column;justify-content:center;min-height:72px;position:relative;overflow:hidden}
-.tla-block::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.04),transparent);pointer-events:none}
 /* Layer colors — deepest to lightest */
-.tla-l1 .tla-block{background:#1e4d2b;border:1px solid rgba(74,200,110,.25)}
-.tla-l2 .tla-block{background:#1a3a28;border:1px solid rgba(74,200,110,.18)}
-.tla-l3 .tla-block{background:#122a1e;border:1px solid rgba(74,200,110,.12)}
-.tla-layer-num{font-family:var(--mono);font-size:9px;letter-spacing:1.2px;text-transform:uppercase;opacity:.5;margin-bottom:6px;display:block}
-.tla-l1 .tla-layer-num{color:#4ac86e}
-.tla-l2 .tla-layer-num{color:#4ac86e}
-.tla-l3 .tla-layer-num{color:#4ac86e}
-.tla-label{font-size:16px;font-weight:600;color:var(--white);line-height:1.2;margin-bottom:4px}
-.tla-sublabel{font-size:12px;color:rgba(255,255,255,.4);line-height:1.35}
-.tla-desc{font-size:14px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.65;opacity:0;transition:opacity .5s ease .25s}
-.tla-layer.tla-in .tla-desc{opacity:1}
 /* Foundation badge on layer 1 */
-.tla-badge{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.8px;text-transform:uppercase;padding:2px 8px;border-radius:100px;background:rgba(74,200,110,.15);color:rgba(74,200,110,.8);margin-bottom:8px}
 /* Replay */
-.tla-replay{display:block;margin-top:28px;background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.35);font-family:var(--mono);font-size:11px;letter-spacing:.5px;padding:6px 16px;border-radius:100px;cursor:pointer;opacity:0;transform:translateY(4px);transition:opacity .4s ease,transform .4s ease,color .2s,border-color .2s;margin-left:auto}
-.tla-replay.tla-show{opacity:1;transform:translateY(0)}
-.tla-replay:hover{color:rgba(255,255,255,.75);border-color:rgba(255,255,255,.35)}
 @media(max-width:680px){
-  .tla-layer{grid-template-columns:1fr;gap:12px}
-  .tla-block{min-height:60px;padding:16px 20px}
-  .tla-desc{opacity:1}
-  .tla-layer.tla-in .tla-desc{opacity:1}
 }
+
+/* ── PROBLEM BLOCKS ── */
+.prob-block{padding:48px 0;border-bottom:1px solid rgba(0,0,0,.08)}
+.prob-block:last-child{border-bottom:none}
+.prob-statement{font-size:clamp(24px,3.2vw,40px);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:var(--black);margin-bottom:14px}
+.prob-support{font-size:16px;font-weight:400;color:rgba(0,0,0,.5);line-height:1.65;max-width:580px;margin-bottom:32px}
+.prob-placeholder{width:100%;height:200px;border-radius:12px;background:#1a1a1a}
+
+/* ── PRIORITY VISUAL ── */
+.pv-section{margin-bottom:0}
+.pv-callout{font-size:clamp(24px,3.2vw,40px);font-weight:400;line-height:1.15;color:var(--white);margin-bottom:48px}
+.pv-diagram{margin-bottom:56px;display:flex;flex-direction:column;gap:20px}
+.pv-tier{}
+.pv-tier-label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px}
+.pv-row{display:flex;align-items:center;gap:14px;padding:14px 20px;border-radius:8px;margin-bottom:4px}
+.pv-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.pv-row-label{font-size:15px;font-weight:500;line-height:1.2}
+/* Foundational rows — progressively a touch lighter to show depth */
+.pv-f1{background:rgba(74,200,110,.14);border:1px solid rgba(74,200,110,.3)}
+.pv-f1 .pv-row-label{color:var(--white)}
+.pv-f2{background:rgba(74,200,110,.1);border:1px solid rgba(74,200,110,.22)}
+.pv-f2 .pv-row-label{color:rgba(255,255,255,.9)}
+.pv-f3{background:rgba(74,200,110,.07);border:1px solid rgba(74,200,110,.16)}
+.pv-f3 .pv-row-label{color:rgba(255,255,255,.85)}
+.pv-dot-f{background:#4ac86e}
+/* Second tier */
+.pv-s1{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.pv-s1 .pv-row-label{color:rgba(255,255,255,.55)}
+.pv-dot-s{background:rgba(255,255,255,.35)}
+/* Future tier */
+.pv-future{background:transparent;border:1px dashed rgba(255,255,255,.08)}
+.pv-future .pv-row-label{color:rgba(255,255,255,.22)}
+.pv-dot-fut{background:rgba(255,255,255,.15)}
+/* Explanation */
+.pv-explanation{}
+.pv-explanation p{font-size:16px;line-height:1.75;color:rgba(255,255,255,.55);margin-bottom:20px;max-width:640px}
+.pv-explanation p:last-child{margin-bottom:0}
 </style>
 </head>
 <body>
@@ -275,10 +285,35 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
 <!-- PROBLEM -->
 <section class="section-light">
   <div class="container">
-    <div class="reveal">
-      <span class="label" style="color:rgba(0,0,0,.4)">The Problem</span>
-      <p class="problem-body">Order status updates &#8212; some of the most time-sensitive communications in a delivery product &#8212; weren&#8217;t reliably reaching members. Push opt-in rates were too low to depend on for broad reach. SMS was already saturated with shopper-facing comms, creating fatigue. Email sat at 1.1% CTR. And members had no single place to find non-urgent communications, no way to control which channels they used, and no visibility into what had been sent. Every team was shipping notifications independently, with no shared framework for priority, channel selection, or content. The result was a fragmented member experience that no single channel could fix on its own.</p>
+    <span class="label reveal" style="color:rgba(0,0,0,.4)">The Problem</span>
+
+    <!-- Statement 1 -->
+    <div class="prob-block reveal">
+      <h2 class="prob-statement">Order status notifications were unreliable.</h2>
+      <p class="prob-support">Time-sensitive updates &#8212; your shopper is on the way, a substitution needs approval &#8212; weren&#8217;t reaching members consistently.</p>
+      <div class="prob-placeholder">
+        <!-- Replace with automated comms / SMS screenshot showing unreliable delivery -->
+      </div>
     </div>
+
+    <!-- Statement 2 -->
+    <div class="prob-block reveal">
+      <h2 class="prob-statement">Push opt-ins were low. Email was saturated. SMS was expensive.</h2>
+      <p class="prob-support">No single channel could reliably reach all members. Each one had limitations &#8212; low opt-ins, inbox fatigue, or cost.</p>
+      <div class="prob-placeholder">
+        <!-- Replace with channel limitations visual / data -->
+      </div>
+    </div>
+
+    <!-- Statement 3 -->
+    <div class="prob-block reveal">
+      <h2 class="prob-statement">There was no centralized place to communicate with members.</h2>
+      <p class="prob-support">Promos, retailer announcements, feature updates, deals &#8212; all of it was scattered across channels with no unified system.</p>
+      <div class="prob-placeholder">
+        <!-- Replace with fragmented channels visual -->
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -291,65 +326,68 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
       <p style="font-size:16px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:56px;max-width:600px;">I designed the strategy across three layers. Each one had to ship before the next could work.</p>
     </div>
 
-    <!-- Three layers animation placeholder -->
-    <!-- Three layers priority animation will be added here -->
-    <div id="three-layers-animation">
-      <div class="tla-wrap">
-        <div class="tla-baseline"></div>
-        <div class="tla-stack">
+    <!-- Priority visual + explanation -->
+    <div id="three-layers-animation" class="pv-section reveal">
 
-          <!-- Layer 3 (top — newest) -->
-          <div class="tla-layer tla-l3" id="tla-l3">
-            <div class="tla-block">
-              <span class="tla-layer-num">Layer 3</span>
-              <div class="tla-label">In-App Notification Center</div>
-              <div class="tla-sublabel">Centralized, non-intrusive reach</div>
-            </div>
-            <p class="tla-desc">To go past the limitations of push, SMS, and email &#8212; a hub that doesn&#8217;t depend on opt-ins.</p>
+      <!-- Part 1: Callout -->
+      <p class="pv-callout">The solution wasn&#8217;t one feature. It was a prioritized system.</p>
+
+      <!-- Part 2: Priority stack diagram -->
+      <div class="pv-diagram">
+
+        <!-- Foundational tier -->
+        <div class="pv-tier">
+          <span class="pv-tier-label">Foundational &mdash; most important</span>
+          <div class="pv-row pv-f1">
+            <span class="pv-dot pv-dot-f"></span>
+            <span class="pv-row-label">In-App Notification Center</span>
           </div>
-
-          <!-- Layer 2 -->
-          <div class="tla-layer tla-l2" id="tla-l2">
-            <div class="tla-block">
-              <span class="tla-layer-num">Layer 2</span>
-              <div class="tla-label">Preference Center</div>
-              <div class="tla-sublabel">Member control over channels</div>
-            </div>
-            <p class="tla-desc">Members needed to choose what they received and how &#8212; push, SMS, or email.</p>
+          <div class="pv-row pv-f2">
+            <span class="pv-dot pv-dot-f"></span>
+            <span class="pv-row-label">Preference Center</span>
           </div>
-
-          <!-- Layer 1 (bottom — most foundational) -->
-          <div class="tla-layer tla-l1" id="tla-l1">
-            <div class="tla-block">
-              <span class="tla-badge">Foundation</span>
-              <div class="tla-label">Automated Comms</div>
-              <div class="tla-sublabel">Reliable order updates &#8212; the core member experience</div>
-            </div>
-            <p class="tla-desc">Ordering is a core experience. Status notifications had to be reliable first.</p>
+          <div class="pv-row pv-f3">
+            <span class="pv-dot pv-dot-f"></span>
+            <span class="pv-row-label">Automated Comms</span>
           </div>
-
         </div>
-        <button class="tla-replay" id="tla-replay">&#8635; Replay</button>
-      </div>
-    </div>
 
-    <!-- Layer description blocks -->
-    <div class="framework-cols reveal">
-      <div class="framework-col">
-        <span class="fw-step-num">Layer 1 &#8212; Automated Comms</span>
-        <p class="fw-step-title" style="margin-bottom:12px;">Most foundational</p>
-        <p class="fw-step-body">Ordering is a core member experience. Notifications about order status had to be reliable first. We automated time-sensitive updates across channels to ensure members always knew where their order was.</p>
+        <!-- Second tier -->
+        <div class="pv-tier">
+          <span class="pv-tier-label">Second layer</span>
+          <div class="pv-row pv-s1">
+            <span class="pv-dot pv-dot-s"></span>
+            <span class="pv-row-label">Ease of use features</span>
+          </div>
+        </div>
+
+        <!-- Future tier -->
+        <div class="pv-tier">
+          <span class="pv-tier-label">Future</span>
+          <div class="pv-row pv-future">
+            <span class="pv-dot pv-dot-fut"></span>
+            <span class="pv-row-label">Live activities</span>
+          </div>
+          <div class="pv-row pv-future">
+            <span class="pv-dot pv-dot-fut"></span>
+            <span class="pv-row-label">In-app Chat</span>
+          </div>
+          <div class="pv-row pv-future">
+            <span class="pv-dot pv-dot-fut"></span>
+            <span class="pv-row-label">Order mods</span>
+          </div>
+        </div>
+
       </div>
-      <div class="framework-col">
-        <span class="fw-step-num">Layer 2 &#8212; Preference Center</span>
-        <p class="fw-step-title" style="margin-bottom:12px;">Member control</p>
-        <p class="fw-step-body">Members needed control over what they received and how. We built granular channel preferences &#8212; push, SMS, email &#8212; so members could tailor their experience.</p>
+
+      <!-- Part 3: Explanation -->
+      <div class="pv-explanation">
+        <p>Automated comms was the most foundational piece. Ordering is a core member experience &#8212; notifications about order status had to be reliable before anything else could work.</p>
+        <p>Next came the Preference Center. Members needed control over what notifications they received on their devices, and through which channels.</p>
+        <p>Once members could control their notifications, we could unlock a new channel &#8212; the In-App Notification Center. A centralized hub inside the app, not dependent on push opt-ins or email open rates.</p>
+        <p>This sequencing was deliberate. Features like order mods &#8212; an in-app item substitution experience &#8212; depend on the layers beneath them. We can recommend members turn on push notifications for something as important as item substitutions. And if they still don&#8217;t want to, they can fall back to the In-App Notification Center. Every layer enables the next.</p>
       </div>
-      <div class="framework-col">
-        <span class="fw-step-num">Layer 3 &#8212; In-App Notification Center</span>
-        <p class="fw-step-title" style="margin-bottom:12px;">Maximum reach</p>
-        <p class="fw-step-body">To maximize reach and go past the limitations of push, SMS, and email, we needed a centralized in-app hub &#8212; non-intrusive, always accessible, and not dependent on opt-ins.</p>
-      </div>
+
     </div>
   </div>
 </section>
@@ -810,53 +848,5 @@ function checkPassword() {
 document.getElementById('pwd-input').addEventListener('keydown', e => { if(e.key==='Enter') checkPassword(); });
 </script>
 
-<script>
-(function(){
-  var LAYERS=[
-    {id:'tla-l1',delay:0},
-    {id:'tla-l2',delay:2000},
-    {id:'tla-l3',delay:4000},
-  ];
-  var timers=[];
-
-  function reset(){
-    timers.forEach(clearTimeout);timers=[];
-    LAYERS.forEach(function(l){
-      var el=document.getElementById(l.id);
-      if(el){el.classList.remove('tla-in');}
-    });
-    var rb=document.getElementById('tla-replay');
-    if(rb){rb.classList.remove('tla-show');}
-  }
-
-  function play(){
-    reset();
-    LAYERS.forEach(function(l){
-      timers.push(setTimeout(function(){
-        var el=document.getElementById(l.id);
-        if(el){el.classList.add('tla-in');}
-      },l.delay));
-    });
-    timers.push(setTimeout(function(){
-      var rb=document.getElementById('tla-replay');
-      if(rb){rb.classList.add('tla-show');}
-    },6200));
-  }
-
-  var tlaEl=document.getElementById('three-layers-animation');
-  var tlaPlayed=false;
-  if(tlaEl&&window.IntersectionObserver){
-    var tlaObs=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting&&!tlaPlayed){tlaPlayed=true;setTimeout(play,300);}
-      });
-    },{threshold:0.3});
-    tlaObs.observe(tlaEl);
-  }
-
-  var rb=document.getElementById('tla-replay');
-  if(rb){rb.addEventListener('click',function(){tlaPlayed=false;play();});}
-})();
-</script>
 </body>
 </html>
