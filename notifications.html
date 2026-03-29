@@ -187,6 +187,9 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
 
 /* ── MOBILE ── */
 @media (max-width: 680px) {
+  .prob-cols{grid-template-columns:1fr;gap:32px}
+  .pv-cols{grid-template-columns:1fr;gap:28px}
+  .design-subsection{padding:48px 0}
   :root { --pad: 20px; }
   #hero { padding-top: 120px; padding-bottom: 64px; }
   #stats { padding-top: 48px; padding-bottom: 60px; }
@@ -216,6 +219,27 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
 /* Replay */
 @media(max-width:680px){
 }
+
+/* ── PROBLEM COLS ── */
+.prob-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-top:40px}
+.prob-col{}
+.prob-col-heading{font-size:clamp(16px,1.8vw,20px);font-weight:600;line-height:1.3;letter-spacing:-.01em;color:var(--black);margin-bottom:12px}
+.prob-col-body{font-size:15px;font-weight:400;color:rgba(0,0,0,.55);line-height:1.7}
+
+/* ── PRIORITY COLS ── */
+.pv-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-top:0}
+.pv-col{}
+.pv-col-title{font-size:15px;font-weight:600;color:var(--white);margin-bottom:10px}
+.pv-col-body{font-size:14px;color:rgba(255,255,255,.55);line-height:1.7}
+
+/* ── DESIGN SUBSECTIONS ── */
+.design-subsection{padding:64px 0;border-top:1px solid rgba(255,255,255,.08)}
+.design-subsection:first-of-type{border-top:none}
+.design-sub-tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:3px 10px;border-radius:100px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);margin-bottom:16px}
+.design-sub-heading{font-size:clamp(20px,2.4vw,28px);font-weight:600;letter-spacing:-.01em;line-height:1.2;margin-bottom:16px;color:var(--white)}
+.design-sub-body{font-size:15px;color:rgba(255,255,255,.55);line-height:1.7;max-width:640px;margin-bottom:40px}
+.design-placeholder{width:100%;aspect-ratio:16/9;border-radius:12px;background:#1a1a1a}
+.design-img{width:100%;display:block;border-radius:12px;margin-top:0}
 
 /* ── PROBLEM BLOCKS ── */
 .prob-block{padding:48px 0;border-bottom:1px solid rgba(0,0,0,.08)}
@@ -287,30 +311,18 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
   <div class="container">
     <span class="label reveal" style="color:rgba(0,0,0,.4)">The Problem</span>
 
-    <!-- Statement 1 -->
-    <div class="prob-block reveal">
-      <h2 class="prob-statement">Order status notifications were unreliable.</h2>
-      <p class="prob-support">Time-sensitive updates &#8212; your shopper is on the way, a substitution needs approval &#8212; weren&#8217;t reaching members consistently.</p>
-      <div class="prob-placeholder">
-        <!-- Replace with automated comms / SMS screenshot showing unreliable delivery -->
+    <div class="prob-cols reveal">
+      <div class="prob-col">
+        <h2 class="prob-col-heading">Order status notifications were unreliable.</h2>
+        <p class="prob-col-body">Time-sensitive updates &#8212; your shopper is on the way, a substitution needs approval &#8212; weren&#8217;t reaching members consistently.</p>
       </div>
-    </div>
-
-    <!-- Statement 2 -->
-    <div class="prob-block reveal">
-      <h2 class="prob-statement">Push opt-ins were low. Email was saturated. SMS was expensive.</h2>
-      <p class="prob-support">No single channel could reliably reach all members. Each one had limitations &#8212; low opt-ins, inbox fatigue, or cost.</p>
-      <div class="prob-placeholder">
-        <!-- Replace with channel limitations visual / data -->
+      <div class="prob-col">
+        <h2 class="prob-col-heading">Push opt-ins were low. Email was saturated. SMS was expensive.</h2>
+        <p class="prob-col-body">No single channel could reliably reach all members. Each one had limitations &#8212; low opt-ins, inbox fatigue, or cost.</p>
       </div>
-    </div>
-
-    <!-- Statement 3 -->
-    <div class="prob-block reveal">
-      <h2 class="prob-statement">There was no centralized place to communicate with members.</h2>
-      <p class="prob-support">Promos, retailer announcements, feature updates, deals &#8212; all of it was scattered across channels with no unified system.</p>
-      <div class="prob-placeholder">
-        <!-- Replace with fragmented channels visual -->
+      <div class="prob-col">
+        <h2 class="prob-col-heading">There was no centralized place to communicate with members.</h2>
+        <p class="prob-col-body">Promos, retailer announcements, feature updates, deals &#8212; all of it was scattered across channels with no unified system.</p>
       </div>
     </div>
 
@@ -329,63 +341,20 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
     <!-- Priority visual + explanation -->
     <div id="three-layers-animation" class="pv-section reveal">
 
-      <!-- Part 1: Callout -->
-      <p class="pv-callout">The solution wasn&#8217;t one feature. It was a prioritized system.</p>
-
-      <!-- Part 2: Priority stack diagram -->
-      <div class="pv-diagram">
-
-        <!-- Foundational tier -->
-        <div class="pv-tier">
-          <span class="pv-tier-label">Foundational &mdash; most important</span>
-          <div class="pv-row pv-f1">
-            <span class="pv-dot pv-dot-f"></span>
-            <span class="pv-row-label">In-App Notification Center</span>
-          </div>
-          <div class="pv-row pv-f2">
-            <span class="pv-dot pv-dot-f"></span>
-            <span class="pv-row-label">Preference Center</span>
-          </div>
-          <div class="pv-row pv-f3">
-            <span class="pv-dot pv-dot-f"></span>
-            <span class="pv-row-label">Automated Comms</span>
-          </div>
+      <img src="Assets/priority.png" alt="Priority system — three layers" style="width:100%;border-radius:12px;margin-bottom:48px;display:block;" loading="lazy" />
+      <div class="pv-cols">
+        <div class="pv-col">
+          <h3 class="pv-col-title">Automated Comms</h3>
+          <p class="pv-col-body">The most foundational layer. Ordering is a core member experience &#8212; notifications about order status had to be reliable before anything else could work.</p>
         </div>
-
-        <!-- Second tier -->
-        <div class="pv-tier">
-          <span class="pv-tier-label">Second layer</span>
-          <div class="pv-row pv-s1">
-            <span class="pv-dot pv-dot-s"></span>
-            <span class="pv-row-label">Ease of use features</span>
-          </div>
+        <div class="pv-col">
+          <h3 class="pv-col-title">Preference Center</h3>
+          <p class="pv-col-body">Members needed control over what they received and through which channels. Once opt-in quality improved, every downstream feature became more effective.</p>
         </div>
-
-        <!-- Future tier -->
-        <div class="pv-tier">
-          <span class="pv-tier-label">Future</span>
-          <div class="pv-row pv-future">
-            <span class="pv-dot pv-dot-fut"></span>
-            <span class="pv-row-label">Live activities</span>
-          </div>
-          <div class="pv-row pv-future">
-            <span class="pv-dot pv-dot-fut"></span>
-            <span class="pv-row-label">In-app Chat</span>
-          </div>
-          <div class="pv-row pv-future">
-            <span class="pv-dot pv-dot-fut"></span>
-            <span class="pv-row-label">Order mods</span>
-          </div>
+        <div class="pv-col">
+          <h3 class="pv-col-title">In-App Notification Center</h3>
+          <p class="pv-col-body">A centralized hub inside the app &#8212; not dependent on push opt-ins or email open rates. Every layer below enables the next above it.</p>
         </div>
-
-      </div>
-
-      <!-- Part 3: Explanation -->
-      <div class="pv-explanation">
-        <p>Automated comms was the most foundational piece. Ordering is a core member experience &#8212; notifications about order status had to be reliable before anything else could work.</p>
-        <p>Next came the Preference Center. Members needed control over what notifications they received on their devices, and through which channels.</p>
-        <p>Once members could control their notifications, we could unlock a new channel &#8212; the In-App Notification Center. A centralized hub inside the app, not dependent on push opt-ins or email open rates.</p>
-        <p>This sequencing was deliberate. Features like order mods &#8212; an in-app item substitution experience &#8212; depend on the layers beneath them. We can recommend members turn on push notifications for something as important as item substitutions. And if they still don&#8217;t want to, they can fall back to the In-App Notification Center. Every layer enables the next.</p>
       </div>
 
     </div>
@@ -407,6 +376,7 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
           <div class="desc">increase in email click-through rate — granular preference controls drove higher-quality engagement across all channels.</div>
         </div>
     </div>
+    <img src="Assets/preferencecenter.png" alt="Preference Center design" class="design-img reveal" style="margin-top:48px;" loading="lazy" />
   </div>
 </section>
 
@@ -762,20 +732,45 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
 
 
 <!-- DESIGNS -->
-<section class="section-dark" style="border-top:1px solid rgba(255,255,255,.08);padding-top:0;">
+<section class="section-dark" style="border-top:1px solid rgba(255,255,255,.08);">
   <div class="container">
-    <div class="decision-list">
-      <div class="decision reveal">
-        <div class="decision-num">03</div>
-        <div class="decision-content">
-          <span class="decision-tag tag-tradeoff">Deliberate constraint</span>
-          <h3>I deliberately limited what users could do.</h3>
-          <p>Users could mark as read or delete — nothing else. Every other control we considered created expectations the backend couldn't fulfill, and a control that doesn't work erodes trust faster than no control at all.</p>
-          <img src="Assets/constraint.png" alt="Constraint" style="width:100%; border-radius:12px; margin-top:24px; display:block;" loading="lazy" />
-        </div>
-      </div>
+    <div class="process-intro reveal">
+      <span class="label">The Designs</span>
+      <h2>What shipped &#8212; and why it looked this way.</h2>
     </div>
+
+    <!-- 1: Notification Component -->
+    <div class="design-subsection reveal">
+      <span class="design-sub-tag">Component</span>
+      <h3 class="design-sub-heading">Notification Component</h3>
+      <p class="design-sub-body">A single, flexible component that handles every notification type in the feed. The visual structure adapts to bucket tier &#8212; urgency-ranked notifications use a stronger hierarchy, while lower-tier content stays visually quieter.</p>
+      <div class="design-placeholder"></div>
     </div>
+
+    <!-- 2: Visual Hierarchy / Tags -->
+    <div class="design-subsection reveal">
+      <span class="design-sub-tag">Visual system</span>
+      <h3 class="design-sub-heading">Visual Hierarchy &amp; Tags</h3>
+      <p class="design-sub-body">Color-coded tier tags make it immediately clear what kind of notification you&#8217;re looking at &#8212; and how urgent it is. The tagging system gave teams a shared vocabulary for content decisions without needing a design review.</p>
+      <div class="design-placeholder"></div>
+    </div>
+
+    <!-- 3: Managing the Feed / Deliberate Constraint -->
+    <div class="design-subsection reveal">
+      <span class="design-sub-tag">Deliberate constraint</span>
+      <h3 class="design-sub-heading">Managing the Feed</h3>
+      <p class="design-sub-body">Users could mark as read or delete &#8212; nothing else. Every other control we considered created expectations the backend couldn&#8217;t fulfill. A control that doesn&#8217;t work erodes trust faster than no control at all.</p>
+      <img src="Assets/constraint.png" alt="Managing the feed &#8212; deliberate constraint" class="design-img" loading="lazy" />
+    </div>
+
+    <!-- 4: Active Order Updates -->
+    <div class="design-subsection reveal">
+      <span class="design-sub-tag">Real-time</span>
+      <h3 class="design-sub-heading">Active Order Updates</h3>
+      <p class="design-sub-body">Time-sensitive order notifications required a distinct visual treatment to stand out in the feed. Active orders surface at the top when relevant &#8212; no hunting through a list of promotional content to find out where your shopper is.</p>
+      <div class="design-placeholder"></div>
+    </div>
+
   </div>
 </section>
 
