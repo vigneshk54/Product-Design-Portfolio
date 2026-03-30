@@ -63,12 +63,14 @@ nav.scrolled{background:rgba(0,0,0,.88);backdrop-filter:blur(12px)}
 .section-body-light{font-size:16px;line-height:1.75;color:rgba(0,0,0,.6);max-width:640px;margin-bottom:40px}
 .bridge-text{font-size:16px;line-height:1.75;color:rgba(255,255,255,.55);margin-top:48px}
 
-/* ── PROBLEM 3-COL ── */
-.prob-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-top:48px}
-.prob-col{}
+/* ── PROBLEM ROWS ── */
+.prob-rows{display:flex;flex-direction:column;gap:0;margin-top:48px}
+.prob-row{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;padding:56px 0;border-top:1px solid rgba(255,255,255,.08)}
+.prob-row:first-child{border-top:none;padding-top:0}
+.prob-row-text{}
 .prob-col-num{font-size:13px;font-weight:700;font-family:var(--mono);letter-spacing:.5px;color:rgba(255,255,255,.3);margin-bottom:12px;display:block}
-.prob-col-heading{font-size:16px;font-weight:600;color:var(--white);margin-bottom:10px}
-.prob-col-body{font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:0}
+.prob-col-heading{font-size:clamp(18px,2vw,24px);font-weight:600;color:var(--white);margin-bottom:12px}
+.prob-col-body{font-size:15px;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:0}
 
 /* ── GOALS 3-COL ── */
 .goals-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-top:40px}
@@ -109,7 +111,7 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
   .section-dark,.section-light{padding-top:64px;padding-bottom:64px}
   #cta{padding-top:64px;padding-bottom:64px}
   .hero-meta{flex-wrap:wrap}
-  .prob-cols{grid-template-columns:1fr;gap:48px}
+  .prob-row{grid-template-columns:1fr;gap:32px}
   .goals-cols{grid-template-columns:1fr;gap:32px}
   .cta-inner{grid-template-columns:1fr;gap:40px}
   .design-sub{padding:48px 0}
@@ -146,30 +148,36 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
     <span class="label reveal">Status Quo</span>
     <p class="callout-text reveal">Discovery was buried. Interactions were inconsistent. Tracking was entirely different.</p>
 
-    <div class="prob-cols">
+    <div class="prob-rows">
 
-      <div class="prob-col reveal d1">
-        <span class="prob-col-num">#1</span>
-        <h3 class="prob-col-heading">Discovery</h3>
-        <p class="prob-col-body">Accessing items eligible for a promo or coupon took multiple steps. The path was buried, different for promos vs coupons, and required members to already know what they were looking for.</p>
+      <div class="prob-row reveal">
+        <div class="prob-row-text">
+          <span class="prob-col-num">#1</span>
+          <h3 class="prob-col-heading">Discovery</h3>
+          <p class="prob-col-body">Accessing items eligible for a promo or coupon took multiple steps. The path was buried, different for promos vs coupons, and required members to already know what they were looking for.</p>
+        </div>
         <!-- Replace with 5-step eligible items flow showing buried access path (from audit slides 2–3) -->
-        <div style="background:#1a1a1a;width:100%;aspect-ratio:3/4;border-radius:8px;margin-top:16px;"></div>
+        <div style="background:#1a1a1a;width:100%;aspect-ratio:4/3;border-radius:8px;"></div>
       </div>
 
-      <div class="prob-col reveal d2">
-        <span class="prob-col-num">#2</span>
-        <h3 class="prob-col-heading">Interaction</h3>
-        <p class="prob-col-body">Promos and coupons looked identical on product cards but behaved completely differently. Members had no way to tell them apart &#8212; and the patterns diverged at every touchpoint.</p>
+      <div class="prob-row reveal">
+        <div class="prob-row-text">
+          <span class="prob-col-num">#2</span>
+          <h3 class="prob-col-heading">Interaction</h3>
+          <p class="prob-col-body">Promos and coupons looked identical on product cards but behaved completely differently. Members had no way to tell them apart &#8212; and the patterns diverged at every touchpoint.</p>
+        </div>
         <!-- Replace with product card comparison showing promos vs coupons looking identical (from audit slide 6). Interactive "which is clickable?" element goes here later. -->
-        <div style="background:#1a1a1a;width:100%;aspect-ratio:3/4;border-radius:8px;margin-top:16px;"></div>
+        <div style="background:#1a1a1a;width:100%;aspect-ratio:4/3;border-radius:8px;"></div>
       </div>
 
-      <div class="prob-col reveal d3">
-        <span class="prob-col-num">#3</span>
-        <h3 class="prob-col-heading">Redemption</h3>
-        <p class="prob-col-body">Members had no way to actively track or pursue savings. Progress toward a promo threshold was buried in the PDP. The experience was entirely passive.</p>
+      <div class="prob-row reveal">
+        <div class="prob-row-text">
+          <span class="prob-col-num">#3</span>
+          <h3 class="prob-col-heading">Redemption</h3>
+          <p class="prob-col-body">Members had no way to actively track or pursue savings. Progress toward a promo threshold was buried in the PDP. The experience was entirely passive.</p>
+        </div>
         <!-- Replace with passive savings visibility — PDP progress buried + cart with no tracker (from audit slide 11) -->
-        <div style="background:#1a1a1a;width:100%;aspect-ratio:3/4;border-radius:8px;margin-top:16px;"></div>
+        <div style="background:#1a1a1a;width:100%;aspect-ratio:4/3;border-radius:8px;"></div>
       </div>
 
     </div>
@@ -179,25 +187,26 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
 </section>
 
 <!-- ── SECTION 3: REFRAMING THE SCOPE ── -->
-<section class="section-dark" style="background:#0a0a0a;border-top:1px solid rgba(255,255,255,.08);">
+<section class="section-light">
   <div class="container">
-    <p class="callout-text reveal">I reframed the project from fixing one flow to redesigning the entire savings system.</p>
+    <span class="label reveal" style="color:rgba(0,0,0,.4)">Scope Expansion</span>
+    <p class="callout-text-light reveal">I reframed the project from fixing one flow to redesigning the entire savings system.</p>
 
     <div class="goals-cols">
       <div class="reveal d1">
-        <p class="goal-num">1.</p>
-        <p class="goal-heading">Simplify access</p>
-        <p class="goal-body">Reduce a multi-step flow to two taps. Members should go from product card to eligible items immediately.</p>
+        <p class="goal-num" style="color:rgba(0,0,0,.12)">1.</p>
+        <p class="goal-heading" style="color:var(--black)">Simplify access</p>
+        <p class="goal-body" style="color:rgba(0,0,0,.55)">Reduce a multi-step flow to two taps. Members should go from product card to eligible items immediately.</p>
       </div>
       <div class="reveal d2">
-        <p class="goal-num">2.</p>
-        <p class="goal-heading">Unify the experience</p>
-        <p class="goal-body">One interaction model for promos and coupons across all surfaces. Members shouldn&#8217;t have to learn two behaviors.</p>
+        <p class="goal-num" style="color:rgba(0,0,0,.12)">2.</p>
+        <p class="goal-heading" style="color:var(--black)">Unify the experience</p>
+        <p class="goal-body" style="color:rgba(0,0,0,.55)">One interaction model for promos and coupons across all surfaces. Members shouldn&#8217;t have to learn two behaviors.</p>
       </div>
       <div class="reveal d3">
-        <p class="goal-num">3.</p>
-        <p class="goal-heading">Surface savings proactively</p>
-        <p class="goal-body">Build a tracker that shows members what they can save as they shop &#8212; not after.</p>
+        <p class="goal-num" style="color:rgba(0,0,0,.12)">3.</p>
+        <p class="goal-heading" style="color:var(--black)">Surface savings proactively</p>
+        <p class="goal-body" style="color:rgba(0,0,0,.55)">Build a tracker that shows members what they can save as they shop &#8212; not after.</p>
       </div>
     </div>
   </div>
