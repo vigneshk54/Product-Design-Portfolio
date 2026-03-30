@@ -86,6 +86,17 @@ nav.scrolled{background:rgba(0,0,0,.88);backdrop-filter:blur(12px)}
 .toggle-pill{font-family:var(--mono);font-size:11px;letter-spacing:.6px;text-transform:uppercase;padding:7px 18px;border-radius:100px;border:none;cursor:pointer;background:transparent;color:rgba(255,255,255,.35);transition:background .2s,color .2s;font-weight:500;line-height:1;white-space:nowrap}
 .toggle-pill.active{background:var(--white);color:var(--black)}
 
+/* Toggle attention pulse — outline stroke animation */
+@keyframes toggle-pulse{
+  0%  { box-shadow: 0 0 0 0px rgba(255,255,255,0.55); }
+  60% { box-shadow: 0 0 0 5px rgba(255,255,255,0); }
+  100%{ box-shadow: 0 0 0 0px rgba(255,255,255,0); }
+}
+.pc-toggle.pulse-attention{
+  animation: toggle-pulse 0.7s ease-out 0.2s 2;
+  border-radius:100px;
+}
+
 /* WIPE */
 .wipe-container{
   position:relative;
@@ -126,11 +137,11 @@ nav.scrolled{background:rgba(0,0,0,.88);backdrop-filter:blur(12px)}
   z-index:2;pointer-events:none;
 }
 
-/* Before layer: clips from the right, starts at 0% (hidden) */
+/* Before layer: clips from the right, starts at 10% */
 .wipe-before-layer{
   position:absolute;inset:0;
   z-index:3;
-  clip-path:inset(0 calc(100% - var(--wp,0%)) 0 0);
+  clip-path:inset(0 calc(100% - var(--wp,10%)) 0 0);
 }
 .wipe-before-layer img{
   position:absolute;inset:0;
@@ -323,7 +334,7 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
             </div>
           </div>
           <!-- Shared divider — outside pairs so it never gets clipped -->
-          <div class="wipe-divider" style="left:0%">
+          <div class="wipe-divider" style="left:10%">
             <div class="wipe-handle"><svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
         </div>
@@ -363,7 +374,7 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
             </div>
           </div>
           <!-- Shared divider — outside pairs so it never gets clipped -->
-          <div class="wipe-divider" style="left:0%">
+          <div class="wipe-divider" style="left:10%">
             <div class="wipe-handle"><svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
         </div>
@@ -425,12 +436,10 @@ checkVis(); window.addEventListener('scroll', checkVis, {passive:true});
 // TOGGLE + WIPE
 (function(){
   document.querySelectorAll('.promo-wipe-section').forEach(function(section){
-    var pills      = section.querySelectorAll('.toggle-pill');
-    var pairs      = section.querySelectorAll('.wipe-pair');
-    var current    = 'promo';
-    var interacted = false;
-    var autoTimer  = null;
-
+    var pills     = section.querySelectorAll('.toggle-pill');
+    var pairs     = section.querySelectorAll('.wipe-pair');
+    var current   = 'coupon'; // pre-select coupon
+    var toggle    = section.querySelector('.pc-toggle');
     var container = section.querySelector('.wipe-container');
     var sharedDiv = section.querySelector('.wipe-divider');
 
@@ -449,17 +458,15 @@ checkVis(); window.addEventListener('scroll', checkVis, {passive:true});
       current = newState;
       pills.forEach(function(p){ p.classList.toggle('active', p.dataset.state === current); });
       pairs.forEach(function(pair){ pair.classList.toggle('active', pair.dataset.toggle === current); });
-      setWipePos(0); // reset to 0% (showing After) on every toggle switch
+      setWipePos(10); // reset to 10% on toggle switch
     }
 
-    function stopAuto(){
-      interacted = true;
-      if(autoTimer){ clearInterval(autoTimer); autoTimer = null; }
-    }
+    // Initialize to coupon
+    setState('coupon');
 
     // Toggle clicks
     pills.forEach(function(pill){
-      pill.addEventListener('click', function(){ stopAuto(); setState(pill.dataset.state); });
+      pill.addEventListener('click', function(){ setState(pill.dataset.state); });
     });
 
     // Wipe drag via shared divider
@@ -469,26 +476,26 @@ checkVis(); window.addEventListener('scroll', checkVis, {passive:true});
         var r = container.getBoundingClientRect();
         return ((clientX - r.left) / r.width) * 100;
       }
-      sharedDiv.addEventListener('mousedown', function(e){ dragging=true; stopAuto(); e.preventDefault(); });
+      sharedDiv.addEventListener('mousedown', function(e){ dragging=true; e.preventDefault(); });
       window.addEventListener('mousemove', function(e){ if(dragging) setWipePos(pctFromX(e.clientX)); });
       window.addEventListener('mouseup', function(){ dragging=false; });
-      sharedDiv.addEventListener('touchstart', function(e){ dragging=true; stopAuto(); e.preventDefault(); },{passive:false});
+      sharedDiv.addEventListener('touchstart', function(e){ dragging=true; e.preventDefault(); },{passive:false});
       window.addEventListener('touchmove', function(e){ if(dragging&&e.touches.length) setWipePos(pctFromX(e.touches[0].clientX)); },{passive:true});
       window.addEventListener('touchend', function(){ dragging=false; });
     }
 
-    // Auto-cycle: starts when section enters viewport
-    var secObs = new IntersectionObserver(function(entries){
-      if(entries[0].isIntersecting && !interacted && !autoTimer){
-        autoTimer = setInterval(function(){
-          if(interacted){ clearInterval(autoTimer); return; }
-          setState(current === 'promo' ? 'coupon' : 'promo');
-        }, 4000);
-      } else if(!entries[0].isIntersecting && autoTimer && !interacted){
-        clearInterval(autoTimer); autoTimer = null;
+    // Pulse animation on the toggle when section enters viewport
+    var pulsed = false;
+    var pulseObs = new IntersectionObserver(function(entries){
+      if(entries[0].isIntersecting && !pulsed && toggle){
+        pulsed = true;
+        toggle.classList.add('pulse-attention');
+        toggle.addEventListener('animationend', function(){
+          toggle.classList.remove('pulse-attention');
+        }, {once:true});
       }
-    },{threshold:0.3});
-    secObs.observe(section);
+    },{threshold:0.4});
+    pulseObs.observe(section);
   });
 })();
 </script>
