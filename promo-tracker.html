@@ -17,6 +17,8 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--black);color:var(--white);overflow-x:hidden}
+
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 var(--pad);transition:background .4s,backdrop-filter .4s}
 nav.scrolled{background:rgba(0,0,0,.88);backdrop-filter:blur(12px)}
 .nav-inner{max-width:var(--max-w);margin:0 auto;height:100%;display:flex;align-items:center;justify-content:space-between}
@@ -25,11 +27,17 @@ nav.scrolled{background:rgba(0,0,0,.88);backdrop-filter:blur(12px)}
 .nav-back::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--white);transform:scaleX(0);transform-origin:right;transition:transform .3s ease}
 .nav-back:hover{color:var(--white)}
 .nav-back:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* REVEAL */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
 .reveal.visible{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* CONTAINER */
 .container{max-width:var(--max-w);margin:0 auto;width:100%}
 .label{font-family:var(--mono);font-size:12px;letter-spacing:1.2px;text-transform:uppercase;opacity:.5;display:block;margin-bottom:12px}
+
+/* HERO */
 #hero{background:var(--black);padding:160px var(--pad) 100px;position:relative;overflow:hidden}
 .hero-meta{display:flex;align-items:center;gap:12px;margin-bottom:32px;flex-wrap:wrap}
 .hero-chip{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border:1px solid rgba(255,255,255,.2);border-radius:100px;color:rgba(255,255,255,.6)}
@@ -37,11 +45,16 @@ nav.scrolled{background:rgba(0,0,0,.88);backdrop-filter:blur(12px)}
 .hero-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,.55);max-width:640px;line-height:1.65;margin-bottom:60px}
 .hero-img-wrap{width:100%;border-radius:16px;overflow:hidden;background:#1a1a1a}
 .hero-img-wrap img{width:100%;height:auto;display:block}
+
+/* SECTIONS */
 .section-dark{background:var(--black);padding:100px var(--pad);color:var(--white)}
 .section-light{background:var(--off-white);padding:100px var(--pad);color:var(--black)}
+
+/* CALLOUTS */
 .callout-text{font-size:clamp(22px,2.8vw,36px);font-weight:600;line-height:1.25;letter-spacing:-.02em;color:var(--white);margin-bottom:40px;max-width:800px}
 .callout-text-light{font-size:clamp(22px,2.8vw,36px);font-weight:600;line-height:1.25;letter-spacing:-.02em;color:var(--black);margin-bottom:40px;max-width:800px}
 .callout-text-sm{font-size:clamp(18px,2.2vw,28px);font-weight:600;line-height:1.3;letter-spacing:-.015em;color:var(--white);max-width:800px}
+
 /* PROBLEM */
 .prob-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;margin-top:48px}
 .prob-col-num{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.5px;color:rgba(255,255,255,.3);display:block;margin-bottom:12px}
@@ -49,44 +62,123 @@ nav.scrolled{background:rgba(0,0,0,.88);backdrop-filter:blur(12px)}
 .prob-col-body{font-size:14px;color:rgba(255,255,255,.5);line-height:1.75}
 .prob-conclusion{margin-top:64px;padding-top:56px;border-top:1px solid rgba(255,255,255,.08)}
 .prob-conclusion-num{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.5px;color:rgba(255,255,255,.3);display:block;margin-bottom:20px}
+
 /* GOALS */
 .goals-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-top:40px}
 .goal-num{font-size:26px;font-weight:700;color:rgba(0,0,0,.12);line-height:1;margin-bottom:12px}
 .goal-heading{font-size:15px;font-weight:600;color:var(--black);margin-bottom:8px}
 .goal-body{font-size:14px;color:rgba(0,0,0,.55);line-height:1.7}
+
 /* DESIGN SECTION */
 .design-section-heading{font-size:clamp(28px,3.5vw,44px);font-weight:400;line-height:1.15;margin-bottom:64px;color:var(--white)}
 .design-sub{padding:64px 0;border-top:1px solid rgba(255,255,255,.08)}
 .design-sub:first-of-type{border-top:none;padding-top:0}
 .design-sub-heading{font-size:clamp(18px,2vw,24px);font-weight:600;letter-spacing:-.01em;line-height:1.2;margin-bottom:14px;color:var(--white)}
 .design-sub-body{font-size:15px;color:rgba(255,255,255,.55);line-height:1.7;max-width:640px;margin-bottom:32px}
+
 /* TRACKER STATIC */
 .tracker-pair{display:flex;gap:24px}
 .tracker-pair-item{flex:1}
 .tracker-pair-item img{width:100%;display:block;border-radius:8px;background:#1a1a1a}
+
 /* TOGGLE */
 .pc-toggle{display:inline-flex;gap:2px;background:rgba(255,255,255,.08);border-radius:100px;padding:3px;margin-bottom:16px}
-.toggle-pill{font-family:var(--mono);font-size:11px;letter-spacing:.6px;text-transform:uppercase;padding:7px 18px;border-radius:100px;border:none;cursor:pointer;background:transparent;color:rgba(255,255,255,.35);transition:background .2s ease,color .2s ease;font-weight:500;line-height:1;white-space:nowrap}
+.toggle-pill{font-family:var(--mono);font-size:11px;letter-spacing:.6px;text-transform:uppercase;padding:7px 18px;border-radius:100px;border:none;cursor:pointer;background:transparent;color:rgba(255,255,255,.35);transition:background .2s,color .2s;font-weight:500;line-height:1;white-space:nowrap}
 .toggle-pill.active{background:var(--white);color:var(--black)}
+
 /* WIPE */
-.wipe-container{position:relative;border-radius:8px;overflow:hidden;background:#1a1a1a;user-select:none}
-.wipe-pair{position:absolute;inset:0;opacity:0;transition:opacity .3s ease;pointer-events:none}
+.wipe-container{
+  position:relative;
+  border-radius:8px;
+  overflow:hidden;
+  background:#000;
+  user-select:none;
+  -webkit-user-select:none;
+}
+/* Each wipe-pair fades in/out via opacity */
+.wipe-pair{
+  position:absolute;inset:0;
+  opacity:0;
+  transition:opacity .3s ease;
+  pointer-events:none;
+}
 .wipe-pair.active{opacity:1;pointer-events:auto}
-.wipe-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.wipe-after{z-index:1}
-.wipe-before{z-index:2;clip-path:inset(0 calc(100% - var(--wp,50%)) 0 0)}
-.wipe-divider{position:absolute;top:0;bottom:0;z-index:10;cursor:ew-resize;width:44px;transform:translateX(-50%)}
-.wipe-divider::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:rgba(255,255,255,.85);transform:translateX(-50%);pointer-events:none}
-.wipe-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.5)}
-.wipe-label{position:absolute;top:12px;font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.7);background:rgba(0,0,0,.45);padding:4px 10px;border-radius:100px;z-index:5;pointer-events:none}
-.wipe-label-before{left:12px}
-.wipe-label-after{right:12px}
+
+/* After image: base layer, always full width */
+.wipe-after-layer{
+  position:absolute;inset:0;
+  z-index:1;
+}
+.wipe-after-layer img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+}
+
+/* After label: sits on the after layer, top-right */
+.wipe-label-after{
+  position:absolute;
+  top:12px;right:12px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.6px;text-transform:uppercase;
+  color:#fff;background:rgba(0,0,0,.7);
+  padding:5px 10px;border-radius:100px;
+  z-index:2;pointer-events:none;
+}
+
+/* Before layer: clips from the right, starts at 0% (hidden) */
+.wipe-before-layer{
+  position:absolute;inset:0;
+  z-index:3;
+  clip-path:inset(0 calc(100% - var(--wp,0%)) 0 0);
+}
+.wipe-before-layer img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+}
+
+/* Before label: inside the before layer, clips with it */
+.wipe-label-before{
+  position:absolute;
+  top:12px;left:12px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.6px;text-transform:uppercase;
+  color:#fff;background:rgba(0,0,0,.7);
+  padding:5px 10px;border-radius:100px;
+  pointer-events:none;
+}
+
+/* Divider: sits at z-index 4, draggable */
+.wipe-divider{
+  position:absolute;top:0;bottom:0;
+  z-index:10;
+  width:44px;
+  cursor:ew-resize;
+  transform:translateX(-50%);
+}
+.wipe-divider::before{
+  content:'';
+  position:absolute;left:50%;top:0;bottom:0;
+  width:2px;background:#fff;
+  transform:translateX(-50%);
+  pointer-events:none;
+}
+.wipe-handle{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:36px;height:36px;
+  border-radius:50%;
+  background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 12px rgba(0,0,0,.6);
+}
+
 /* CTA */
 #cta{background:var(--black);padding:100px var(--pad);border-top:1px solid rgba(255,255,255,.08)}
 .cta-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .cta-left h2{font-size:clamp(28px,3.5vw,44px);font-weight:400;line-height:1.15;margin-bottom:16px}
 .cta-left p{font-size:15px;color:rgba(255,255,255,.5);line-height:1.65;max-width:420px}
 .cta-btn-disabled{display:inline-flex;align-items:center;background:rgba(255,255,255,.07);color:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:14px 28px;font-family:var(--font);font-size:15px;font-weight:500;cursor:not-allowed;white-space:nowrap}
+
 /* FOOTER */
 footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid rgba(255,255,255,.08)}
 .footer-inner{max-width:var(--max-w);margin:0 auto;display:flex;justify-content:space-between;align-items:center}
@@ -98,6 +190,8 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
 .footer-vibe{font-size:11px;color:rgba(255,255,255,.22);display:flex;align-items:center;gap:5px;margin-top:24px;max-width:var(--max-w);margin-left:auto;margin-right:auto}
 .footer-vibe a{color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:color .2s}
 .footer-vibe a:hover{color:rgba(255,255,255,.55)}
+
+/* MOBILE */
 @media(max-width:680px){
   :root{--pad:20px}
   #hero{padding-top:120px;padding-bottom:64px}
@@ -205,22 +299,38 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
           <button class="toggle-pill" data-state="coupon">Coupon</button>
         </div>
         <div class="wipe-container" style="aspect-ratio:16/9;">
+          <!-- Promo pair -->
           <div class="wipe-pair active" data-toggle="promo">
-            <img class="wipe-img wipe-after"  src="Assets/promo-tracker/unified-promo-after.png"  alt="Unified promo after"  loading="lazy" />
-            <img class="wipe-img wipe-before" src="Assets/promo-tracker/unified-promo-before.png" alt="Unified promo before" loading="lazy" />
-            <div class="wipe-divider" style="left:50%">
-              <div class="wipe-handle"><svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="wipe-after-layer">
+              <img src="Assets/promo-tracker/unified-promo-after.png" alt="Unified promo — after" loading="lazy" />
+              <span class="wipe-label-after">After</span>
+            </div>
+            <div class="wipe-before-layer">
+              <img src="Assets/promo-tracker/unified-promo-before.png" alt="Unified promo — before" loading="lazy" />
+              <span class="wipe-label-before">Before</span>
+            </div>
+            <div class="wipe-divider" style="left:0%">
+              <div class="wipe-handle">
+                <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
             </div>
           </div>
+          <!-- Coupon pair -->
           <div class="wipe-pair" data-toggle="coupon">
-            <img class="wipe-img wipe-after"  src="Assets/promo-tracker/unified-coupon-after.png"  alt="Unified coupon after"  loading="lazy" />
-            <img class="wipe-img wipe-before" src="Assets/promo-tracker/unified-coupon-before.png" alt="Unified coupon before" loading="lazy" />
-            <div class="wipe-divider" style="left:50%">
-              <div class="wipe-handle"><svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="wipe-after-layer">
+              <img src="Assets/promo-tracker/unified-coupon-after.png" alt="Unified coupon — after" loading="lazy" />
+              <span class="wipe-label-after">After</span>
+            </div>
+            <div class="wipe-before-layer">
+              <img src="Assets/promo-tracker/unified-coupon-before.png" alt="Unified coupon — before" loading="lazy" />
+              <span class="wipe-label-before">Before</span>
+            </div>
+            <div class="wipe-divider" style="left:0%">
+              <div class="wipe-handle">
+                <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
             </div>
           </div>
-          <span class="wipe-label wipe-label-before">Before</span>
-          <span class="wipe-label wipe-label-after">After</span>
         </div>
       </div>
     </div>
@@ -235,27 +345,43 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
           <button class="toggle-pill" data-state="coupon">Coupon</button>
         </div>
         <div class="wipe-container" style="aspect-ratio:16/9;">
+          <!-- Promo pair -->
           <div class="wipe-pair active" data-toggle="promo">
-            <img class="wipe-img wipe-after"  src="Assets/access-promo-after.png"  alt="Access promo after"  loading="lazy" />
-            <img class="wipe-img wipe-before" src="Assets/access-promo-before.png" alt="Access promo before" loading="lazy" />
-            <div class="wipe-divider" style="left:50%">
-              <div class="wipe-handle"><svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="wipe-after-layer">
+              <img src="Assets/access-promo-after.png" alt="Access promo — after" loading="lazy" />
+              <span class="wipe-label-after">After</span>
+            </div>
+            <div class="wipe-before-layer">
+              <img src="Assets/access-promo-before.png" alt="Access promo — before" loading="lazy" />
+              <span class="wipe-label-before">Before</span>
+            </div>
+            <div class="wipe-divider" style="left:0%">
+              <div class="wipe-handle">
+                <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
             </div>
           </div>
+          <!-- Coupon pair -->
           <div class="wipe-pair" data-toggle="coupon">
-            <img class="wipe-img wipe-after"  src="Assets/access-coupon-after.png"  alt="Access coupon after"  loading="lazy" />
-            <img class="wipe-img wipe-before" src="Assets/access-coupon-before.png" alt="Access coupon before" loading="lazy" />
-            <div class="wipe-divider" style="left:50%">
-              <div class="wipe-handle"><svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="wipe-after-layer">
+              <img src="Assets/access-coupon-after.png" alt="Access coupon — after" loading="lazy" />
+              <span class="wipe-label-after">After</span>
+            </div>
+            <div class="wipe-before-layer">
+              <img src="Assets/access-coupon-before.png" alt="Access coupon — before" loading="lazy" />
+              <span class="wipe-label-before">Before</span>
+            </div>
+            <div class="wipe-divider" style="left:0%">
+              <div class="wipe-handle">
+                <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
             </div>
           </div>
-          <span class="wipe-label wipe-label-before">Before</span>
-          <span class="wipe-label wipe-label-after">After</span>
         </div>
       </div>
     </div>
 
-    <!-- 4c: Savings tracker — static images -->
+    <!-- 4c: Savings tracker — static only -->
     <div class="design-sub reveal">
       <p class="callout-text" style="margin-bottom:20px;">Savings shouldn&#8217;t be something members stumble into.</p>
       <p class="design-sub-body">I designed a consistent potential savings tracker that appears across the shopping journey &#8212; on the retailer home page, in search results, and in cart. It surfaces applicable promos and coupons based on items already added, shows progress toward thresholds, and prompts actionable next steps. The tracker transforms savings from a passive discovery into an active, guided experience.</p>
@@ -311,12 +437,12 @@ window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', s
 var revEls = document.querySelectorAll('.reveal');
 var revObs = new IntersectionObserver(function(entries){
   entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); revObs.unobserve(e.target); } });
-}, {threshold:.08});
+},{threshold:.08});
 revEls.forEach(function(el){ revObs.observe(el); });
-function checkVis(){ revEls.forEach(function(el){ if(el.getBoundingClientRect().top < innerHeight - 40) el.classList.add('visible'); }); }
+function checkVis(){ revEls.forEach(function(el){ if(el.getBoundingClientRect().top < innerHeight-40) el.classList.add('visible'); }); }
 checkVis(); window.addEventListener('scroll', checkVis, {passive:true});
 
-// TOGGLE + WIPE (each .promo-wipe-section is independent)
+// TOGGLE + WIPE
 (function(){
   document.querySelectorAll('.promo-wipe-section').forEach(function(section){
     var pills      = section.querySelectorAll('.toggle-pill');
@@ -325,12 +451,13 @@ checkVis(); window.addEventListener('scroll', checkVis, {passive:true});
     var interacted = false;
     var autoTimer  = null;
 
+    // Set wipe position: pct 0–100, stored as CSS var on the before-layer
     function setWipePos(pair, pct){
-      pct = Math.max(5, Math.min(95, pct));
-      var bImg = pair.querySelector('.wipe-before');
-      var div  = pair.querySelector('.wipe-divider');
-      if(bImg) bImg.style.setProperty('--wp', pct + '%');
-      if(div)  div.style.left = pct + '%';
+      pct = Math.max(0, Math.min(100, pct));
+      var beforeLayer = pair.querySelector('.wipe-before-layer');
+      var divider     = pair.querySelector('.wipe-divider');
+      if(beforeLayer) beforeLayer.style.setProperty('--wp', pct + '%');
+      if(divider)     divider.style.left = pct + '%';
     }
 
     function setState(newState){
@@ -338,7 +465,7 @@ checkVis(); window.addEventListener('scroll', checkVis, {passive:true});
       pills.forEach(function(p){ p.classList.toggle('active', p.dataset.state === current); });
       pairs.forEach(function(pair){
         var becoming = pair.dataset.toggle === current;
-        if(becoming && !pair.classList.contains('active')) setWipePos(pair, 50);
+        if(becoming && !pair.classList.contains('active')) setWipePos(pair, 0); // reset to 0% on switch
         pair.classList.toggle('active', becoming);
       });
     }
@@ -348,10 +475,12 @@ checkVis(); window.addEventListener('scroll', checkVis, {passive:true});
       if(autoTimer){ clearInterval(autoTimer); autoTimer = null; }
     }
 
+    // Toggle clicks
     pills.forEach(function(pill){
       pill.addEventListener('click', function(){ stopAuto(); setState(pill.dataset.state); });
     });
 
+    // Wipe drag — per pair
     pairs.forEach(function(pair){
       var container = pair.closest('.wipe-container');
       var divider   = pair.querySelector('.wipe-divider');
@@ -375,14 +504,14 @@ checkVis(); window.addEventListener('scroll', checkVis, {passive:true});
       divider.addEventListener('touchstart', function(e){
         if(!pair.classList.contains('active')) return;
         dragging = true; stopAuto(); e.preventDefault();
-      }, {passive:false});
+      },{passive:false});
       window.addEventListener('touchmove', function(e){
         if(dragging && e.touches.length) setWipePos(pair, pctFromX(e.touches[0].clientX));
-      }, {passive:true});
+      },{passive:true});
       window.addEventListener('touchend', function(){ dragging = false; });
     });
 
-    // Auto-cycle starts when section scrolls into view
+    // Auto-cycle: starts when section enters viewport
     var secObs = new IntersectionObserver(function(entries){
       if(entries[0].isIntersecting && !interacted && !autoTimer){
         autoTimer = setInterval(function(){
@@ -392,7 +521,7 @@ checkVis(); window.addEventListener('scroll', checkVis, {passive:true});
       } else if(!entries[0].isIntersecting && autoTimer && !interacted){
         clearInterval(autoTimer); autoTimer = null;
       }
-    }, {threshold:0.3});
+    },{threshold:0.3});
     secObs.observe(section);
   });
 })();
