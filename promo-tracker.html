@@ -290,47 +290,7 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
   <div class="container">
     <h2 class="design-section-heading reveal">What I designed</h2>
 
-    <!-- 4a: Unified framework -->
-    <div class="design-sub reveal">
-      <h3 class="design-sub-heading">One system, not two</h3>
-      <p class="design-sub-body">I aligned how promos and coupons behave at every level. Promos now show a chevron for visual affordance of clickability. Both types lead to a consistent details page with eligible items shown immediately. PDP states &#8212; default, in progress, complete &#8212; follow the same pattern regardless of savings type.</p>
-      <div class="promo-wipe-section" data-section="unified">
-        <div class="pc-toggle">
-          <button class="toggle-pill active" data-state="promo">Promo</button>
-          <button class="toggle-pill" data-state="coupon">Coupon</button>
-        </div>
-        <div class="wipe-container" style="aspect-ratio:16/9;">
-          <!-- Promo pair -->
-          <div class="wipe-pair active" data-toggle="promo">
-            <div class="wipe-after-layer">
-              <img src="Assets/promo-tracker/unified-promo-after.png" alt="Promo — after" loading="lazy" />
-              <span class="wipe-label-after">After</span>
-            </div>
-            <div class="wipe-before-layer">
-              <img src="Assets/promo-tracker/unified-promo-before.png" alt="Promo — before" loading="lazy" />
-              <span class="wipe-label-before">Before</span>
-            </div>
-          </div>
-          <!-- Coupon pair -->
-          <div class="wipe-pair" data-toggle="coupon">
-            <div class="wipe-after-layer">
-              <img src="Assets/promo-tracker/unified-coupon-after.png" alt="Coupon — after" loading="lazy" />
-              <span class="wipe-label-after">After</span>
-            </div>
-            <div class="wipe-before-layer">
-              <img src="Assets/promo-tracker/unified-coupon-before.png" alt="Coupon — before" loading="lazy" />
-              <span class="wipe-label-before">Before</span>
-            </div>
-          </div>
-          <!-- Shared divider — outside pairs so it never gets clipped -->
-          <div class="wipe-divider" style="left:0%">
-            <div class="wipe-handle"><svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4b: Simplified access -->
+    <!-- 4a: Simplified access -->
     <div class="design-sub reveal">
       <h3 class="design-sub-heading">From five steps to two</h3>
       <p class="design-sub-body">The original flow required tapping the coupon, clipping it, waiting for transitions, tapping mix and match, then viewing eligible items. The redesigned flow: tap the promo or coupon from the product card, see eligible items immediately.</p>
@@ -370,18 +330,51 @@ footer{background:var(--black);padding:60px var(--pad) 48px;border-top:1px solid
       </div>
     </div>
 
+    <!-- 4b: Unified framework -->
+    <div class="design-sub reveal">
+      <h3 class="design-sub-heading">One system, not two</h3>
+      <p class="design-sub-body">I aligned how promos and coupons behave at every level. Promos now show a chevron for visual affordance of clickability. Both types lead to a consistent details page with eligible items shown immediately. PDP states &#8212; default, in progress, complete &#8212; follow the same pattern regardless of savings type.</p>
+      <div class="promo-wipe-section" data-section="unified">
+        <div class="pc-toggle">
+          <button class="toggle-pill active" data-state="promo">Promo</button>
+          <button class="toggle-pill" data-state="coupon">Coupon</button>
+        </div>
+        <div class="wipe-container" style="aspect-ratio:16/9;">
+          <!-- Promo pair -->
+          <div class="wipe-pair active" data-toggle="promo">
+            <div class="wipe-after-layer">
+              <img src="Assets/unified-promo-after.png" alt="Promo — after" loading="lazy" />
+              <span class="wipe-label-after">After</span>
+            </div>
+            <div class="wipe-before-layer">
+              <img src="Assets/unified-promo-before.png" alt="Promo — before" loading="lazy" />
+              <span class="wipe-label-before">Before</span>
+            </div>
+          </div>
+          <!-- Coupon pair -->
+          <div class="wipe-pair" data-toggle="coupon">
+            <div class="wipe-after-layer">
+              <img src="Assets/unified-coupon-after.png" alt="Coupon — after" loading="lazy" />
+              <span class="wipe-label-after">After</span>
+            </div>
+            <div class="wipe-before-layer">
+              <img src="Assets/unified-coupon-before.png" alt="Coupon — before" loading="lazy" />
+              <span class="wipe-label-before">Before</span>
+            </div>
+          </div>
+          <!-- Shared divider — outside pairs so it never gets clipped -->
+          <div class="wipe-divider" style="left:0%">
+            <div class="wipe-handle"><svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 4c: Savings tracker — static only -->
     <div class="design-sub reveal">
       <p class="callout-text" style="margin-bottom:20px;">Savings shouldn&#8217;t be something members stumble into.</p>
       <p class="design-sub-body">I designed a consistent potential savings tracker that appears across the shopping journey &#8212; on the retailer home page, in search results, and in cart. It surfaces applicable promos and coupons based on items already added, shows progress toward thresholds, and prompts actionable next steps. The tracker transforms savings from a passive discovery into an active, guided experience.</p>
-      <div class="tracker-pair">
-        <div class="tracker-pair-item">
-          <img src="Assets/promo-tracker/tracker-browse.png" alt="Savings tracker on browse" loading="lazy" />
-        </div>
-        <div class="tracker-pair-item">
-          <img src="Assets/promo-tracker/tracker-cart.png" alt="Savings tracker in cart" loading="lazy" />
-        </div>
-      </div>
+      <img src="Assets/Promotracker.gif" alt="Savings tracker" style="width:100%;display:block;border-radius:12px;" />
     </div>
 
   </div>
