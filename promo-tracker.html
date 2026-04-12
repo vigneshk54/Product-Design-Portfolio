@@ -167,6 +167,19 @@ nav.scrolled{background:rgba(0,0,0,.88);backdrop-filter:blur(12px)}
   cursor:ew-resize;
   transform:translateX(-50%);
 }
+
+/* Bounce hint — horizontal nudge to signal draggability */
+@keyframes wipe-bounce{
+  0%   { left: 10%; }
+  20%  { left: 18%; }
+  40%  { left: 6%;  }
+  60%  { left: 16%; }
+  80%  { left: 8%;  }
+  100% { left: 10%; }
+}
+.wipe-divider.wipe-hint{
+  animation: wipe-bounce 0.9s cubic-bezier(0.36,0.07,0.19,0.97) 0.5s 1 forwards;
+}
 .wipe-divider::before{
   content:'';
   position:absolute;left:50%;top:0;bottom:0;
@@ -484,15 +497,25 @@ checkVis(); window.addEventListener('scroll', checkVis, {passive:true});
       window.addEventListener('touchend', function(){ dragging=false; });
     }
 
-    // Pulse animation on the toggle when section enters viewport
+    // Pulse + bounce animations when section enters viewport
     var pulsed = false;
     var pulseObs = new IntersectionObserver(function(entries){
-      if(entries[0].isIntersecting && !pulsed && toggle){
+      if(entries[0].isIntersecting && !pulsed){
         pulsed = true;
-        toggle.classList.add('pulse-attention');
-        toggle.addEventListener('animationend', function(){
-          toggle.classList.remove('pulse-attention');
-        }, {once:true});
+        // Toggle stroke pulse
+        if(toggle){
+          toggle.classList.add('pulse-attention');
+          toggle.addEventListener('animationend', function(){
+            toggle.classList.remove('pulse-attention');
+          }, {once:true});
+        }
+        // Wiper bounce hint
+        if(sharedDiv){
+          sharedDiv.classList.add('wipe-hint');
+          sharedDiv.addEventListener('animationend', function(){
+            sharedDiv.classList.remove('wipe-hint');
+          }, {once:true});
+        }
       }
     },{threshold:0.4});
     pulseObs.observe(section);
